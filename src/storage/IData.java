@@ -1,13 +1,14 @@
 package storage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface IData {
-	public void addWordsToIgnore(String s);
-	public void addTitle(String s);
-	public void deleteWordsToIgnore(String s);
-	public void deleteTitle(String s);
-	public ArrayList<String> getWordsToIgnore();
+	public void addWordsToIgnore(ArrayList<String> wordsToIgnoreToAdd);
+	public void addTitles(ArrayList<String> titlesToAdd);
+	public void deleteWordsToIgnore(ArrayList<String> wordsToIgnoreToDelete);
+	public void deleteTitles(ArrayList<String> titlesToDelete);
+	public HashMap<String, Integer> getWordsToIgnore();
 	public ArrayList<String> getTitlesToAdd();
 	public ArrayList<String> getTitlesToDelete();
 	public int getIndex(String s); 
