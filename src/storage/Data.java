@@ -21,7 +21,8 @@ public class Data implements IData {
 
 		for (String s : wordsToIgnoreToAdd){
 			wordsToIgnore.put(s, 1);		// put every new stopwords into hashMap
-		}									
+		}				
+		wordsToIgnoreHaveChanged = true;
 		flushSortedList();					// flush the output to process again
 	}
 
@@ -36,11 +37,19 @@ public class Data implements IData {
 	}
 
 	@Override
+	public boolean checkIfWordsToIgnoreChanged() {
+		// TODO Auto-generated method stub
+		return wordsToIgnoreHaveChanged;
+	}
+	
+	
+	@Override
 	public void deleteWordsToIgnore(ArrayList<String> wordsToIgnoreToDelete) {
 		
 		for (String s : wordsToIgnoreToDelete){
 			wordsToIgnore.remove(s);		// delete target stopwords from hashMap	
-		}									
+		}		
+		wordsToIgnoreHaveChanged = true;
 		flushSortedList();					// flush the output to process again
 	}
 	
@@ -57,6 +66,12 @@ public class Data implements IData {
 	public HashMap<String, Integer> getWordsToIgnore() {
 
 		return wordsToIgnore;
+	}
+	
+	@Override
+	public HashMap<String, Integer> getTitles() {
+		// TODO Auto-generated method stub
+		return titleMap;
 	}
 	
 	@Override
@@ -77,13 +92,13 @@ public class Data implements IData {
 	}
 	
 	@Override							
-	public ArrayList<String> getSortedList() {
+	public ArrayList<Title> getSortedList() {
 
 		return sortedList;
 	}
 	
 	@Override
-	public void setSortedList(ArrayList<String> list) {
+	public void setSortedList(ArrayList<Title> list) {
 
 		sortedList = list;
 	}
@@ -97,9 +112,10 @@ public class Data implements IData {
 	
 	private HashMap<String, Integer> wordsToIgnore = new HashMap<String, Integer>();
 	private HashMap<String, Integer> titleMap = new HashMap<String, Integer>();
-	private ArrayList<String> sortedList = new ArrayList<String>();
+	private ArrayList<Title> sortedList = new ArrayList<Title>();
 	private int nextIndex = 0;
-	private ArrayList<String> titlesToAdd = new ArrayList<String>();
-	private ArrayList<String> titlesToDelete = new ArrayList<String>();
+	private ArrayList<String> titlesToAdd = null;
+	private ArrayList<String> titlesToDelete = null;
+	private boolean wordsToIgnoreHaveChanged = false;
 	
 }

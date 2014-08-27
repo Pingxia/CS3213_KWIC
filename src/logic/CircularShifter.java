@@ -8,7 +8,8 @@ import storage.Title;
 
 public class CircularShifter implements ICircularShifter {
 
-	public static void process( HashMap<String, Integer> wordsToIgnore, String s, int indexOfThisLine) {
+	public ArrayList<Title> computeCircularShifts( 
+			HashMap<String, Integer> wordsToIgnore, String s, int indexOfThisLine) {
 		// TODO Auto-generated method stub
 		ArrayList<Title> shiftedList = new ArrayList<Title>(); 
 		
@@ -29,9 +30,11 @@ public class CircularShifter implements ICircularShifter {
 			 
 		}
 		
-		Sorter.sortAfterAdding(shiftedList);
+		return shiftedList;
 		
 	}
+
+	
 
 	  
 }

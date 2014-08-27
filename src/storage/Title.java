@@ -19,7 +19,7 @@ public class Title {
 		return line;
 	}
 	
-	private int getIndex(){
+	public int getIndex(){
 		return index;
 	}
 	
