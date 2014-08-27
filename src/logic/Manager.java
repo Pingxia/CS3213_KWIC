@@ -1,7 +1,5 @@
 package logic;
 
-import java.util.ArrayList;
-
 import storage.Data;
 
 public class Manager implements IManager {
@@ -11,10 +9,11 @@ public class Manager implements IManager {
 		// TODO Auto-generated method stub
 		
 		Data data = new Data();
+		int indexOfThisLine = data.getIndex(s);
 		
 		switch (cmd){
 			case "add":
-				CircularShifter.process(data.getStopWords(),  s);
+				CircularShifter.process(data.getWordsToIgnore(),  s, indexOfThisLine);
 				break;
 			case "delete":
 				int indexToBeDeleted = data.getIndex(s); 
@@ -28,10 +27,5 @@ public class Manager implements IManager {
 		}
 	}
 
-	@Override
-	public ArrayList<String> execute() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

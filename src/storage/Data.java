@@ -21,11 +21,11 @@ public class Data implements IData {
 	@Override
 	public void addWordsToIgnore(String s) {
 		// TODO Auto-generated method stub
-		stopWords.add(s);
+		wordsToIgnore.put(s, 1);
 	}
 
 	@Override
-	public void addTitles(String s) {
+	public void addTitle(String s) {
 		// TODO Auto-generated method stub
 		titleMap.put(s, nextIndex);
 		nextIndex++;
@@ -43,9 +43,9 @@ public class Data implements IData {
 		return sortedList;
 	}
 	
-	public ArrayList<String> getStopWords() {
+	public HashMap<String, Integer> getWordsToIgnore() {
 		// TODO Auto-generated method stub
-		return stopWords;
+		return wordsToIgnore;
 	}
 	
 	public void flushSortedList() {
@@ -55,7 +55,7 @@ public class Data implements IData {
 		nextIndex = 0;
 	}
 	
-	private ArrayList<String> stopWords = new ArrayList<String>();
+	private HashMap<String, Integer> wordsToIgnore = new HashMap<String, Integer>();
 	private HashMap<String, Integer> titleMap = new HashMap<String, Integer>();
 	private ArrayList<String> sortedList = new ArrayList<String>();
 	private int nextIndex = 0;
