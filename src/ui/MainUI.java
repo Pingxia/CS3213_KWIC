@@ -41,6 +41,8 @@ public class MainUI extends UIFrame implements IMainUI {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 
 	
 }
