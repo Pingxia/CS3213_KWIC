@@ -14,8 +14,10 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class UIFrame extends JFrame {
 
@@ -73,11 +75,11 @@ public class UIFrame extends JFrame {
 					.addGap(18))
 		);
 		
-		JPanel panel1 = new ListPanel();
-		tabbedPane.addTab("IngoreWords", null, panel1, null);
+		ignoreWordsPanel = new ListPanel();
+		tabbedPane.addTab("IngoreWords", null, ignoreWordsPanel, null);
 		
-		JPanel panel2 = new ListPanel();
-		tabbedPane.addTab("Titles", null, panel2, null);
+		titlesPanel = new ListPanel();
+		tabbedPane.addTab("Titles", null, titlesPanel, null);
 		contentPane.setLayout(gl_contentPane);
 	}
 	
@@ -85,6 +87,18 @@ public class UIFrame extends JFrame {
 		outputPanel.setVisible(true);
 	}
 	
-	private OutputPanel outputPanel = new OutputPanel();
+	public ArrayList<String> getWordsToIgnore(){
+		return ignoreWordsPanel.getInputFromFile();
+	}
 	
+	public ArrayList<String> getTitlesToAdd(){
+		return titlesPanel.getInputFromFile();
+	}
+	
+	private OutputPanel outputPanel = new OutputPanel();
+	private ListPanel ignoreWordsPanel;
+	private ListPanel titlesPanel;
+	private ArrayList<String> wordsToIgnore = new ArrayList<String>();
+	private ArrayList<String> titlesToDelete = new ArrayList<String>();
+	private ArrayList<String> titlesToAdd = new ArrayList<String>();
 }
