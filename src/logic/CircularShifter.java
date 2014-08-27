@@ -22,7 +22,8 @@ public class CircularShifter implements ICircularShifter {
 				char upperCase= (char) (shiftedLine.charAt(0) - 32);
 				shiftedLine = upperCase + shiftedLine.substring(1);
 				Title title = new Title(shiftedLine, indexOfThisLine);
-				// return to lower case!!!
+				char lowerCase= (char) (shiftedLine.charAt(0) + 32);
+				shiftedLine = lowerCase + shiftedLine.substring(1);
 				shiftedList.add(title);
 			}
 			int wordLength = words[i].length();
