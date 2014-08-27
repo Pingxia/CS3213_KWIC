@@ -7,17 +7,17 @@ public class Title implements Comparable<Title>{
 		index = i;
 	}
 	
-	private void setLine(String str){
-		line = str;
-	}
-	
-	private void setIndex(int i){
-		index = i;
-	} 
-	
-	private String getLine(){
-		return line;
-	}
+//	private void setLine(String str){
+//		line = str;
+//	}
+//	
+//	private void setIndex(int i){
+//		index = i;
+//	} 
+//	
+//	private String getLine(){
+//		return line;
+//	}
 	
 	public int getIndex(){
 		return index;
@@ -26,7 +26,8 @@ public class Title implements Comparable<Title>{
 	@Override
 	public int compareTo(Title other) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.line.compareTo(other.line); 
+		
 	}
 	
 	private int index;
