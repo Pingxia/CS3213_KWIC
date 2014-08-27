@@ -1,6 +1,6 @@
 package storage;
 
-public class Title {
+public class Title implements Comparable<Title>{
 	
 	public Title(String str, int i){
 		line = str;
@@ -23,6 +23,13 @@ public class Title {
 		return index;
 	}
 	
+	@Override
+	public int compareTo(Title other) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	private int index;
 	private String line;
+	
 }

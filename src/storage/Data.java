@@ -20,6 +20,7 @@ public class Data implements IData {
 	public void addWordsToIgnore(ArrayList<String> wordsToIgnoreToAdd) {
 
 		for (String s : wordsToIgnoreToAdd){
+			s = s.trim().toLowerCase();
 			wordsToIgnore.put(s, 1);		// put every new stopwords into hashMap
 		}				
 		wordsToIgnoreHaveChanged = true;

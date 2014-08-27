@@ -19,11 +19,11 @@ public class Sorter implements ISorter {
 		// TODO Auto-generated method stub
 		while (left < right){
 			int pivot = (left + right) / 2; 
-			if (t.compareTo(sortedList.get(pivot) == 0)){
+			if (t.compareTo(sortedList.get(pivot))== 0){
 				sortedList.add(pivot, t);
 				break;
 			}
-			else if(t.compareTo(sortedList.get(pivot) == 0){
+			else if(t.compareTo(sortedList.get(pivot)) > 0){
 				left = pivot + 1;
 			} 
 			else{
