@@ -44,7 +44,6 @@ public class Data implements IData {
 	}
 	
 	
-	@Override
 	public void deleteWordsToIgnore(ArrayList<String> wordsToIgnoreToDelete) {
 		
 		for (String s : wordsToIgnoreToDelete){

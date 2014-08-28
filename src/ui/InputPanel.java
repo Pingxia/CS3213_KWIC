@@ -130,8 +130,7 @@ public class InputPanel extends JPanel {
 	
 	private void run(){
 		//TODO get a list of output, pass output to outputPanel
-		outputPanel.setVisible(true);
-		feedbackPane.setText("Processing lines...");
+		MainUI.run();
 	}
 	
 	private void deleteSelectedRows() {
@@ -154,7 +153,7 @@ public class InputPanel extends JPanel {
 		String[] inputLines = input.split("\n");
 		//add into list and table to display
 		for(String s: inputLines){
-			inputFromKeyboard.add(s);
+			inputToAdd.add(s);
 			model.addRow(new Object[]{s});
 		}
 		feedbackPane.setText("New items added");
@@ -164,13 +163,9 @@ public class InputPanel extends JPanel {
 	private void loadFile(File f) {
 		// TODO load file input, display on table
 	}
-
-	public ArrayList<String> getInputFromFile() {
-		return inputFromFile;
-	}
 	
-	public ArrayList<String> getInputFromKeyboard() {
-		return inputFromKeyboard;
+	public ArrayList<String> getInputToAdd() {
+		return inputToAdd;
 	}
 	
 	public ArrayList<String> getInputToDelete() {
@@ -179,19 +174,20 @@ public class InputPanel extends JPanel {
 	
 	public ArrayList<String> getDisplayingList(){
 		//TODO simply get all the string on the display screen
-		return null;
+		ArrayList<String> s = new ArrayList<String>();
+		int rowCount = table.getRowCount();
+		for(int i=0; i<rowCount; i++){
+			s.add((String)table.getValueAt(i, 0));
+		}
+		return s;
 	}
 
 	final JFileChooser fc = new JFileChooser();
-	private ArrayList<String> inputFromFile = new ArrayList<String>();
-	private ArrayList<String> inputFromKeyboard = new ArrayList<String>();
+	private ArrayList<String> inputToAdd = new ArrayList<String>();
 	private ArrayList<String> inputToDelete = new ArrayList<String>();
-	
 	private JTextPane feedbackPane;
 	private JTextArea inputTextArea;
 	private JTable table;
 	private String[] columnNames = { "Content" };
 	private Object[][] data = { };
-	private OutputPanel outputPanel = new OutputPanel();
-	
 }

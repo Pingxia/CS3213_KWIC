@@ -4,8 +4,16 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
+
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+
 import javax.swing.JScrollPane;
+
+import logic.IManager;
+import logic.Manager;
+import storage.Data;
+import storage.IData;
 
 public class MainUI {
 
@@ -52,7 +60,17 @@ public class MainUI {
 		tabbedPane.addTab("IgnoreWords", null, wordsToIgnorePanel, null);
 	}
 	
-	private InputPanel wordsToIgnorePanel;
-	private InputPanel titlesPanel;
-
+	public static void run(){
+		outputPanel.setVisible(true);
+		data.addWordsToIgnore(wordsToIgnorePanel.getDisplayingList());
+		data.addTitles(titlesPanel.getInputToAdd());
+		data.deleteTitles(titlesPanel.getInputToDelete());
+		manager.run();
+	}
+	
+	private static InputPanel wordsToIgnorePanel;
+	private static InputPanel titlesPanel;
+	private static OutputPanel outputPanel = new OutputPanel();
+	private static IData data = Data.getInstance();
+	private static IManager manager = new Manager();
 }
