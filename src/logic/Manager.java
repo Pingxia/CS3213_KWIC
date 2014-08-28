@@ -48,6 +48,7 @@ public class Manager implements IManager {
 
 	private void addTitlesToShift() {
 		// TODO Auto-generated method stub
+		listToBeSorted.clear();
 		for (String s: addTitles){
 			int indexOfThisLine = titles.get(s); 
 			CircularShifter cs = new CircularShifter();

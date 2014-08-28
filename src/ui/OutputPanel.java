@@ -38,8 +38,6 @@ public class OutputPanel extends JFrame {
 
 		outputArea = new JTextArea();
 		outputArea.setEditable(false);
-		// TODO
-		outputArea.setText("Sample Output");
 
 		JButton btnExport = new JButton("Export");
 		btnExport.addActionListener(new ActionListener() {
@@ -79,6 +77,7 @@ public class OutputPanel extends JFrame {
 	}
 
 	public void display(ArrayList<String> output) {
+		outputArea.setText("");
 		for (String s : output) {
 			outputArea.append(s + "\n");
 		}

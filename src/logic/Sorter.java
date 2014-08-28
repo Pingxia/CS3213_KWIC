@@ -18,7 +18,7 @@ public class Sorter implements ISorter {
 			int right) {
 		// TODO Auto-generated method stub
 		int pivot = (left + right) / 2; 
-		
+
 		while (left < right){
 			if (t.compareTo(sortedList.get(pivot))== 0){
 				sortedList.add(pivot, t);
@@ -28,7 +28,7 @@ public class Sorter implements ISorter {
 				left = pivot + 1;
 			} 
 			else{
-				right = pivot - 1;
+				right = pivot;
 			}
 			pivot = (left + right) / 2;
 		}

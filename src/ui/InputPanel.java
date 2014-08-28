@@ -53,6 +53,7 @@ public class InputPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				inputToDelete.clear();
 				deleteSelectedRows();
 			}
 		});
@@ -68,6 +69,7 @@ public class InputPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				inputToAdd.clear();
 				addInputFromKeyboard();
 			}
 			
