@@ -146,8 +146,17 @@ public class InputPanel extends JPanel {
 	}
 	
 	private void addInputFromKeyboard(){
-		//TODO
+		//TODO check for duplication when add in rows
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		
+		String input = inputTextArea.getText();
+		String[] inputLines = input.split("\n");
+		//add into list and table to display
+		for(String s: inputLines){
+			inputFromKeyboard.add(s);
+			model.addRow(new Object[]{s});
+		}
+		inputTextArea.setText("");
 	}
 
 	private void loadFile(File f) {
@@ -180,5 +189,5 @@ public class InputPanel extends JPanel {
 	private JTextArea inputTextArea;
 	private JTable table;
 	private String[] columnNames = { "Content" };
-	private Object[][] data = { { "testing 1" },{"testing 2 "},{"testing 3 "} };
+	private Object[][] data = { };
 }
