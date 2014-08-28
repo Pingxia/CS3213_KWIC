@@ -23,8 +23,11 @@ public class Data implements IData {
 			s = s.trim().toLowerCase();
 			wordsToIgnore.put(s, 1);		// put every new stopwords into hashMap
 		}				
-		wordsToIgnoreHaveChanged = true;
-		flushSortedList();					// flush the output to process again
+		if (!wordsToIgnoreToAdd.isEmpty()){
+			wordsToIgnoreHaveChanged = true;
+			flushSortedList();					// flush the output to process again
+		}
+		
 	}
 
 	@Override
@@ -43,14 +46,25 @@ public class Data implements IData {
 		return wordsToIgnoreHaveChanged;
 	}
 	
+	@Override
+	public ArrayList<String> convertTitleListToStringList() {
+
+		ArrayList<String> outputStringList = new ArrayList<String>();
+		for (Title t: sortedList){
+			outputStringList.add(t.getLine());
+		}
+		return outputStringList;
+	}
 	
 	public void deleteWordsToIgnore(ArrayList<String> wordsToIgnoreToDelete) {
 		
 		for (String s : wordsToIgnoreToDelete){
 			wordsToIgnore.remove(s);		// delete target stopwords from hashMap	
-		}		
-		wordsToIgnoreHaveChanged = true;
-		flushSortedList();					// flush the output to process again
+		}
+		if (!wordsToIgnoreToDelete.isEmpty()){
+			wordsToIgnoreHaveChanged = true;
+			flushSortedList();					// flush the output to process again
+		}
 	}
 	
 	@Override
@@ -103,6 +117,7 @@ public class Data implements IData {
 		sortedList = list;
 	}
 	
+	
 	private void flushSortedList() {
 
 //		MainUI.writeOutputToFile(sortedList);
@@ -117,5 +132,6 @@ public class Data implements IData {
 	private ArrayList<String> titlesToAdd = null;
 	private ArrayList<String> titlesToDelete = null;
 	private boolean wordsToIgnoreHaveChanged = false;
+	
 	
 }

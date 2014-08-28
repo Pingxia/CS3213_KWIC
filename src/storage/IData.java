@@ -7,6 +7,7 @@ public interface IData {
 	public void addWordsToIgnore(ArrayList<String> wordsToIgnoreToAdd);
 	public void addTitles(ArrayList<String> titlesToAdd);
 	public boolean checkIfWordsToIgnoreChanged();
+	public ArrayList<String> convertTitleListToStringList();
 	public void deleteTitles(ArrayList<String> titlesToDelete);
 	public HashMap<String, Integer> getWordsToIgnore();
 	public HashMap<String, Integer> getTitles();

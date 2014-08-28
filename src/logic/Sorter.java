@@ -17,11 +17,12 @@ public class Sorter implements ISorter {
 	private void binaryInsertionSort(Title t, ArrayList<Title> sortedList, int left,
 			int right) {
 		// TODO Auto-generated method stub
+		int pivot = (left + right) / 2; 
+		
 		while (left < right){
-			int pivot = (left + right) / 2; 
 			if (t.compareTo(sortedList.get(pivot))== 0){
 				sortedList.add(pivot, t);
-				break;
+				return;
 			}
 			else if(t.compareTo(sortedList.get(pivot)) > 0){
 				left = pivot + 1;
@@ -29,8 +30,9 @@ public class Sorter implements ISorter {
 			else{
 				right = pivot - 1;
 			}
-			sortedList.add(pivot, t);
+			pivot = (left + right) / 2;
 		}
+		sortedList.add(pivot, t);
 	}
 
 	

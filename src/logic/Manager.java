@@ -17,11 +17,11 @@ public class Manager implements IManager {
 		
 		if (!data.checkIfWordsToIgnoreChanged()){
 			deleteTitles = data.getTitlesToDelete();
-			if (deleteTitles != null ){
+			if (!deleteTitles.isEmpty() ){
 				deleteTitlesDirectlyFromOutput();
 			}
 			addTitles = data.getTitlesToAdd();
-			if (addTitles != null){
+			if (!addTitles.isEmpty()){
 				addTitlesToShift();
 			}
 		}

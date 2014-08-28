@@ -66,6 +66,8 @@ public class MainUI {
 		data.addTitles(titlesPanel.getInputToAdd());
 		data.deleteTitles(titlesPanel.getInputToDelete());
 		manager.run();
+		//TODO display output
+		outputPanel.display(data.convertTitleListToStringList());
 	}
 	
 	private static InputPanel wordsToIgnorePanel;
