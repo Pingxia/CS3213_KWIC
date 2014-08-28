@@ -19,16 +19,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.UIManager;
 
-public class OutputPanel extends JFrame {
+public class t extends JFrame {
 
 	private JPanel contentPane;
 
 	/**
 	 * Create the frame.
 	 */
-	public OutputPanel() {
+	public t() {
 		setTitle("Results");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 322);
@@ -51,30 +50,22 @@ public class OutputPanel extends JFrame {
 			}
 
 		});
-		
-		feedbackPane = new JTextPane();
-		feedbackPane.setBackground(UIManager.getColor("Button.background"));
-		feedbackPane.setEditable(false);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(btnExport)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(feedbackPane, GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
-					.addGap(5))
-				.addComponent(outputArea, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(outputArea, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnExport)
-						.addComponent(feedbackPane, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-					.addGap(8))
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane
+				.createParallelGroup(Alignment.LEADING)
+				.addGroup(
+						gl_contentPane.createSequentialGroup()
+								.addComponent(btnExport).addContainerGap())
+				.addComponent(outputArea, GroupLayout.DEFAULT_SIZE, 490,
+						Short.MAX_VALUE));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(
+				Alignment.LEADING).addGroup(
+				gl_contentPane
+						.createSequentialGroup()
+						.addComponent(outputArea, GroupLayout.DEFAULT_SIZE,
+								241, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(btnExport).addGap(8)));
 		contentPane.setLayout(gl_contentPane);
 	}
 
@@ -87,7 +78,7 @@ public class OutputPanel extends JFrame {
 	private void export() {
 		// TODO export to pdf file, doc file or excel file, notify user of
 		// successful save
-		int returnVal = fc.showSaveDialog(OutputPanel.this);
+		int returnVal = fc.showSaveDialog(t.this);
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File fileToSave = fc.getSelectedFile();
@@ -103,7 +94,6 @@ public class OutputPanel extends JFrame {
 			PrintWriter writer = new PrintWriter(f);
 			writer.append(outputArea.getText());
 			writer.close();
-			feedbackPane.setText("Exported to "+f.getAbsolutePath());
 		} catch (Exception e) {
 
 		}
@@ -111,5 +101,4 @@ public class OutputPanel extends JFrame {
 
 	final JFileChooser fc = new JFileChooser();
 	private JTextArea outputArea;
-	private JTextPane feedbackPane;
 }

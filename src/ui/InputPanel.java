@@ -39,7 +39,7 @@ public class InputPanel extends JPanel {
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					File file = fc.getSelectedFile();
 					// log.append("Opening: " + file.getName() + "." + newline);
-					feedbackPane.setText("Opening: " + file.getName() + ".");
+					feedbackPane.setText("Opening: " + file.getAbsolutePath() + ".");
 					loadFile(file);
 				} else {
 					// log.append("Open command cancelled by user." + newline);
@@ -86,7 +86,8 @@ public class InputPanel extends JPanel {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addContainerGap()
 					.addComponent(btnBrowse)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnDelete)
@@ -105,18 +106,14 @@ public class InputPanel extends JPanel {
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnBrowse)
-								.addComponent(btnDelete))
-							.addPreferredGap(ComponentPlacement.UNRELATED))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(feedbackPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+							.addComponent(btnBrowse)
+							.addComponent(btnDelete))
+						.addComponent(feedbackPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(inputTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnRun)
@@ -125,13 +122,16 @@ public class InputPanel extends JPanel {
 		);
 		
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
+		//TODO enable sort in table?
 		table = new JTable( model );
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);
 	}
 	
 	private void run(){
-		//TODO
+		//TODO get a list of output, pass output to outputPanel
+		outputPanel.setVisible(true);
+		feedbackPane.setText("Processing lines...");
 	}
 	
 	private void deleteSelectedRows() {
@@ -142,6 +142,7 @@ public class InputPanel extends JPanel {
 			String selectedString =  (String) model.getValueAt(rows[i] - i,0);
 			inputToDelete.add(selectedString);
 			model.removeRow(rows[i] - i);
+			feedbackPane.setText("Delete selected items");
 		}
 	}
 	
@@ -156,6 +157,7 @@ public class InputPanel extends JPanel {
 			inputFromKeyboard.add(s);
 			model.addRow(new Object[]{s});
 		}
+		feedbackPane.setText("New items added");
 		inputTextArea.setText("");
 	}
 
@@ -176,7 +178,7 @@ public class InputPanel extends JPanel {
 	}
 	
 	public ArrayList<String> getDisplayingList(){
-		//TODO
+		//TODO simply get all the string on the display screen
 		return null;
 	}
 
@@ -190,4 +192,6 @@ public class InputPanel extends JPanel {
 	private JTable table;
 	private String[] columnNames = { "Content" };
 	private Object[][] data = { };
+	private OutputPanel outputPanel = new OutputPanel();
+	
 }
