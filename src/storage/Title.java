@@ -15,9 +15,9 @@ public class Title implements Comparable<Title>{
 //		index = i;
 //	} 
 //	
-//	private String getLine(){
-//		return line;
-//	}
+	public String getLine(){
+		return line;
+	}
 	
 	public int getIndex(){
 		return index;
