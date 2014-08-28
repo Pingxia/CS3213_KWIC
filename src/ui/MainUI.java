@@ -1,9 +1,15 @@
 package ui;
 
 import java.awt.EventQueue;
-import java.util.ArrayList;
 
-public class MainUI extends UIFrame implements IMainUI {
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
+import java.awt.BorderLayout;
+import javax.swing.JScrollPane;
+
+public class MainUI {
+
+	private JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -12,37 +18,41 @@ public class MainUI extends UIFrame implements IMainUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainUI frame = new MainUI();
-					frame.setVisible(true);
+					MainUI window = new MainUI();
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-	
-	MainUI(){
-		super();
+
+	/**
+	 * Create the application.
+	 */
+	public MainUI() {
+		initialize();
 	}
-	
-	@Override
-	public void display(ArrayList<String> s) {
-		// TODO Auto-generated method stub
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 538, 343);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-	}
-
-	@Override
-	public ArrayList<String> start(String s) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static void writeOutputToFile(ArrayList<String> sortedList) {
-		// TODO Auto-generated method stub
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
+		titlesPanel = new InputPanel();
+		tabbedPane.addTab("Titles", null, titlesPanel, null);
+		
+		wordsToIgnorePanel = new InputPanel();
+		tabbedPane.addTab("IgnoreWords", null, wordsToIgnorePanel, null);
 	}
 	
-	
+	private InputPanel wordsToIgnorePanel;
+	private InputPanel titlesPanel;
 
-	
 }

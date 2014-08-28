@@ -138,6 +138,6 @@ public class ListPanel extends JPanel {
 	private ArrayList<String> inputFromFile = new ArrayList<String>();
 	private JTextPane feedbackPane;
 	private JTable table;
-	private String[] columnNames = { "Content", "Select" };
-	private Object[][] data = { { "lala", "lll" } };
+	private String[] columnNames = { "Content" };
+	private Object[][] data = { { "lala" } };
 }
