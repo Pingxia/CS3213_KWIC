@@ -17,11 +17,11 @@ public class Manager implements IManager {
 		
 		if (!data.checkIfWordsToIgnoreChanged()){
 			deleteTitles = data.getTitlesToDelete();
-			if (deleteTitles != null ){
+			if (!deleteTitles.isEmpty() ){
 				deleteTitlesDirectlyFromOutput();
 			}
 			addTitles = data.getTitlesToAdd();
-			if (addTitles != null){
+			if (!addTitles.isEmpty()){
 				addTitlesToShift();
 			}
 		}
@@ -48,6 +48,7 @@ public class Manager implements IManager {
 
 	private void addTitlesToShift() {
 		// TODO Auto-generated method stub
+		listToBeSorted.clear();
 		for (String s: addTitles){
 			int indexOfThisLine = titles.get(s); 
 			CircularShifter cs = new CircularShifter();
