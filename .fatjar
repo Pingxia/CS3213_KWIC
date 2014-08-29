@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Sat Aug 30 03:10:24 SGT 2014
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=true
+jarname=CS3213_KWIC_fat.jar
+manifest.mergeall=true
+manifest.mainclass=ui.MainUI
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=
