@@ -50,6 +50,8 @@ public class OutputPanel extends JFrame {
 
 		});
 		
+		JScrollPane j = new JScrollPane();
+		j.setViewportView(outputArea);
 		feedbackPane = new JTextPane();
 		feedbackPane.setBackground(UIManager.getColor("Button.background"));
 		feedbackPane.setEditable(false);
@@ -61,12 +63,12 @@ public class OutputPanel extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(feedbackPane, GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
 					.addGap(5))
-				.addComponent(outputArea, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+				.addComponent(j, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(outputArea, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+					.addComponent(j, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnExport)

@@ -62,12 +62,15 @@ public class MainUI {
 	
 	public static void run(){
 		outputPanel.setVisible(true);
-		data.addWordsToIgnore(wordsToIgnorePanel.getDisplayingList());
+		data.addWordsToIgnore(wordsToIgnorePanel.getInputToAdd());
+		data.deleteWordsToIgnore(wordsToIgnorePanel.getInputToDelete());
 		data.addTitles(titlesPanel.getInputToAdd());
 		data.deleteTitles(titlesPanel.getInputToDelete());
 		manager.run();
 		//TODO display output
 		outputPanel.display(data.convertTitleListToStringList());
+		titlesPanel.resetInputLists();
+		wordsToIgnorePanel.resetInputLists();
 	}
 	
 	private static InputPanel wordsToIgnorePanel;

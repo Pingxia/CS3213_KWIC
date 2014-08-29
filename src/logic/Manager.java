@@ -14,36 +14,42 @@ public class Manager implements IManager {
 		titles = data.getTitles();	
 		wordsToIgnore = data.getWordsToIgnore();
 		sortedList = data.getSortedList();
+		deleteTitles = data.getTitlesToDelete();
+		addTitles = data.getTitlesToAdd();
 		
 		if (!data.checkIfWordsToIgnoreChanged()){
-			deleteTitles = data.getTitlesToDelete();
-			if (!deleteTitles.isEmpty() ){
-				deleteTitlesDirectlyFromOutput();
-			}
-			addTitles = data.getTitlesToAdd();
 			if (!addTitles.isEmpty()){
 				addTitlesToShift();
+			}
+			if (!deleteTitles.isEmpty() ){
+				deleteTitlesDirectlyFromOutput();
 			}
 		}
 		else{
 			renewTitles();
 			addTitlesToShift();
 		}
+		data.resetIgnoreChecker();
 		
-		if (returnList!= null){
-			data.setSortedList(returnList);
+		if (listAfterDeletion != null){
+			data.setSortedList(sortedList);
+			listAfterDeletion = null;
 		}
 		else{
-			data.setSortedList(sortedList);
+			data.setSortedList(returnList);
+			returnList = null;
 		}
 			
 	}
 	
 	private void renewTitles() {
 		// TODO Auto-generated method stub
-		for (String line : titles.keySet()) {
-		    addTitles.add(line);
-		}
+		if (!titles.isEmpty()){
+			addTitles.clear();
+			for (String line : titles.keySet()) {
+				addTitles.add(line);
+			}
+		}	
 	}
 
 	private void addTitlesToShift() {
@@ -60,15 +66,23 @@ public class Manager implements IManager {
 	}
 
 	private void deleteTitlesDirectlyFromOutput() {
-		for (String line : deleteTitles){
-			int deleteIndex = titles.get(line);
-			
-			for (Title title: sortedList){
-				if (title.getIndex() == deleteIndex){
-					sortedList.remove(title);
+		listAfterDeletion = new ArrayList<Title>();
+		boolean matchFlag;
+		
+		for (Title title: sortedList){
+			matchFlag = false;
+			int titleIndex = title.getIndex();
+			for (String line : deleteTitles){
+				if (titles.get(line).intValue() == titleIndex){
+					matchFlag = true;
 				}
 			}
+			if (!matchFlag){
+				listAfterDeletion.add(title);
+			} 
 		}
+		sortedList = listAfterDeletion;
+		Data.getInstance().deleteTitlesFromInput();
 	}
 	
 	private ArrayList<String> addTitles;
@@ -79,5 +93,5 @@ public class Manager implements IManager {
 	private ArrayList<Title> listToBeSorted = new ArrayList<Title>();
 	private ArrayList<Title> sortedList;
 	private ArrayList<Title> returnList;
-	
+	private ArrayList<Title> listAfterDeletion;
 }

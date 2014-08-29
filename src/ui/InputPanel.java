@@ -53,7 +53,6 @@ public class InputPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				inputToDelete.clear();
 				deleteSelectedRows();
 			}
 		});
@@ -69,7 +68,6 @@ public class InputPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				inputToAdd.clear();
 				addInputFromKeyboard();
 			}
 			
@@ -132,6 +130,7 @@ public class InputPanel extends JPanel {
 	
 	private void run(){
 		//TODO get a list of output, pass output to outputPanel
+	
 		MainUI.run();
 	}
 	
@@ -184,6 +183,10 @@ public class InputPanel extends JPanel {
 		return s;
 	}
 
+	public void resetInputLists(){
+		inputToAdd.clear();
+		inputToDelete.clear();
+	}
 	final JFileChooser fc = new JFileChooser();
 	private ArrayList<String> inputToAdd = new ArrayList<String>();
 	private ArrayList<String> inputToDelete = new ArrayList<String>();

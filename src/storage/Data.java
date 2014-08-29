@@ -56,6 +56,7 @@ public class Data implements IData {
 		return outputStringList;
 	}
 	
+	@Override
 	public void deleteWordsToIgnore(ArrayList<String> wordsToIgnoreToDelete) {
 		
 		for (String s : wordsToIgnoreToDelete){
@@ -71,8 +72,12 @@ public class Data implements IData {
 	public void deleteTitles(ArrayList<String> list) {
 
 		titlesToDelete = list;
-		for (String s : titlesToDelete){
-			titleMap.remove(s);
+	}
+	
+	@Override
+	public void deleteTitlesFromInput() {
+		for (String str: titlesToDelete){
+			titleMap.remove(str);
 		}
 	}
 	
@@ -117,6 +122,10 @@ public class Data implements IData {
 		sortedList = list;
 	}
 	
+	@Override
+	public void resetIgnoreChecker(){
+		wordsToIgnoreHaveChanged = false;
+	}
 	
 	private void flushSortedList() {
 
