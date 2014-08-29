@@ -82,6 +82,7 @@ public class OutputPanel extends JFrame {
 		outputArea.setText("");
 		for (String s : output) {
 			outputArea.append(s + "\n");
+			outList.add(s+"\n");
 		}
 	}
 
@@ -102,7 +103,9 @@ public class OutputPanel extends JFrame {
 	private void writeToFile(File f) {
 		try {
 			PrintWriter writer = new PrintWriter(f);
-			writer.append(outputArea.getText());
+			for(String s: outList){
+				writer.append(s);
+			}
 			writer.close();
 			feedbackPane.setText("Exported to "+f.getAbsolutePath());
 		} catch (Exception e) {
@@ -113,4 +116,5 @@ public class OutputPanel extends JFrame {
 	final JFileChooser fc = new JFileChooser();
 	private JTextArea outputArea;
 	private JTextPane feedbackPane;
-}
+	private ArrayList<String> outList = new ArrayList<String>();
+} 

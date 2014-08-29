@@ -47,6 +47,7 @@ public class MainUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("KWIC");
 		frame.setBounds(100, 100, 538, 343);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

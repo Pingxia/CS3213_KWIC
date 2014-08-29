@@ -14,7 +14,11 @@ import javax.swing.JTextArea;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JTextPane;
@@ -162,7 +166,26 @@ public class InputPanel extends JPanel {
 	}
 
 	private void loadFile(File f) {
-		// TODO load file input, display on table
+		inputToAdd.clear();
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model.setRowCount(0);
+		try {
+			FileReader fr = new FileReader(f);
+			BufferedReader br = new BufferedReader(fr);
+			String s;
+			while((s = br.readLine())!=null){
+				System.out.println(s);
+				model.addRow(new Object[]{s});
+				inputToAdd.add(s);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public ArrayList<String> getInputToAdd() {
