@@ -7,10 +7,10 @@ public class Title implements Comparable<Title>{
 		index = i;
 	}
 	
-//	private void setLine(String str){
-//		line = str;
-//	}
-//	
+	public void setLine(String str){
+		line = str;
+	}
+	
 //	private void setIndex(int i){
 //		index = i;
 //	} 

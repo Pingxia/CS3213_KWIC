@@ -19,11 +19,15 @@ public class CircularShifter implements ICircularShifter {
 		String[] words = line.split(" ");
 		for (int i = 0; i < words.length; i ++){
 			if (!wordsToIgnore.containsKey(words[i])){
-				char upperCase= (char) (shiftedLine.charAt(0) - 32);
-				shiftedLine = upperCase + shiftedLine.substring(1);
 				Title title = new Title(shiftedLine, indexOfThisLine);
-				char lowerCase= (char) (shiftedLine.charAt(0) + 32);
-				shiftedLine = lowerCase + shiftedLine.substring(1);
+				char firstChar = shiftedLine.charAt(0);
+				if (firstChar >= 'a' && firstChar <= 'z'){
+					char upperCase= (char) (shiftedLine.charAt(0) - 32);
+					shiftedLine = upperCase + shiftedLine.substring(1);
+					title.setLine(shiftedLine);
+					char lowerCase= (char) (shiftedLine.charAt(0) + 32);
+					shiftedLine = lowerCase + shiftedLine.substring(1);
+				}
 				shiftedList.add(title);
 			}
 			int wordLength = words[i].length();
