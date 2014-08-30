@@ -174,9 +174,13 @@ public class InputPanel extends JPanel {
 			BufferedReader br = new BufferedReader(fr);
 			String s;
 			while((s = br.readLine())!=null){
-				System.out.println(s);
-				model.addRow(new Object[]{s});
-				inputToAdd.add(s);
+//				System.out.println(s);
+				String strToAdd = s;
+				if (f.toString().endsWith(".csv")){
+					strToAdd = s.substring(0, s.indexOf(","));
+				}
+				inputToAdd.add(strToAdd);
+				model.addRow(new Object[]{strToAdd});
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

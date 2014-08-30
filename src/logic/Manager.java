@@ -73,8 +73,10 @@ public class Manager implements IManager {
 			matchFlag = false;
 			int titleIndex = title.getIndex();
 			for (String line : deleteTitles){
-				if (titles.get(line).intValue() == titleIndex){
-					matchFlag = true;
+				if (titles.get(line) !=null ){
+					if (titles.get(line).intValue() == titleIndex){
+						matchFlag = true;
+					}
 				}
 			}
 			if (!matchFlag){

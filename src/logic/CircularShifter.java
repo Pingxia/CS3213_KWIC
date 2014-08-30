@@ -14,6 +14,9 @@ public class CircularShifter implements ICircularShifter {
 		ArrayList<Title> shiftedList = new ArrayList<Title>(); 
 		
 		String line = s.trim().toLowerCase();
+		if (s.isEmpty()){
+			return shiftedList;
+		}
 		String shiftedLine = line + " ";
 		
 		String[] words = line.split(" ");
