@@ -177,8 +177,8 @@ public class InputPanel extends JPanel {
 				System.out.println(s);
 				String strToAdd = s;
 				if (f.toString().endsWith(".csv")){
-					if (s.indexOf(',')!= -1){
-						strToAdd = s.substring(0, s.indexOf(","));
+					if (s.indexOf(',') > 0){
+						strToAdd = s.substring(0, s.indexOf(','));
 					}
 				}
 				inputToAdd.add(strToAdd);
